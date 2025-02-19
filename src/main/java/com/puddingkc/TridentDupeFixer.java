@@ -42,9 +42,8 @@ public class TridentDupeFixer extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getItem() == null) {
-            return;
-        }
+        if (event.getItem() == null) { return; }
+
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (event.getItem().getType() == Material.TRIDENT) {
                 readyThrow.add(event.getPlayer().getUniqueId());
@@ -64,9 +63,7 @@ public class TridentDupeFixer extends JavaPlugin implements Listener {
     public void onPlayerItemHeld(PlayerItemHeldEvent event) {
         Player player = event.getPlayer();
         ItemStack itemStack = player.getInventory().getItem(event.getNewSlot());
-        if (itemStack == null) {
-            readyThrow.remove(player.getUniqueId());
-        } else if (itemStack.getType() != Material.TRIDENT) {
+        if (itemStack == null || itemStack.getType() != Material.TRIDENT) {
             readyThrow.remove(player.getUniqueId());
         }
     }
