@@ -42,7 +42,8 @@ public class TridentDupeFixer extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getItem() == null) { return; }
+        ItemStack item = event.getItem();
+        if (item == null) { return; }
 
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (item.getType() == Material.TRIDENT && !item.containsEnchantment(Enchantment.RIPTIDE)) {
