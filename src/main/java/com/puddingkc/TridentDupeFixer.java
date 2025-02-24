@@ -33,11 +33,9 @@ public class TridentDupeFixer extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onProjectileLaunch(ProjectileLaunchEvent event) {
-        if (event.getEntity() instanceof Trident) {
-            if (event.getEntity().getShooter() instanceof Player) {
-                Player player = (Player) event.getEntity().getShooter();
-                readyThrow.remove(player.getUniqueId());
-            }
+        if (event.getEntity() instanceof Trident && event.getEntity().getShooter() instanceof Player) {
+            Player player = (Player) event.getEntity().getShooter();
+            readyThrow.remove(player.getUniqueId());
         }
     }
 
